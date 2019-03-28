@@ -9,10 +9,10 @@ import {
   Label,
   Input
 } from "reactstrap";
-import PropTypes from "prop-types";
-import addPlant from "../actions/itemActions";
+import { connect } from "react-redux";
+import { addPlant } from "../actions/itemActions";
 
-export class AddPlant extends Component {
+class AddPlant extends Component {
   state = {
     modal: false,
     name: "",
@@ -53,7 +53,9 @@ export class AddPlant extends Component {
         </Button>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Cadastrar espécie</ModalHeader>
+          <ModalHeader toggle={this.toggle}>
+            Cadastrar nova espécie medicinal
+          </ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -61,13 +63,13 @@ export class AddPlant extends Component {
                   type="text"
                   name="name"
                   id="item"
-                  placeholder="Add plant name"
+                  placeholder="Nome da planta"
                   onChange={this.onChange}
                 />
                 <Input
                   type="text"
                   name="usage"
-                  placeholder="Add plant usage"
+                  placeholder="Add usos, separados por virgula e espaço (ex: sono, febre)"
                   onChange={this.onChange}
                 />
                 <Button className="btn btn-success" block>
@@ -83,8 +85,14 @@ export class AddPlant extends Component {
 }
 
 // PropTypes
-AddPlant.propTypes = {
-  addPlant: PropTypes.func.isRequired
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    plant: state.prop
+  };
 };
 
-export default AddPlant;
+export default connect(
+  mapStateToProps,
+  { addPlant }
+)(AddPlant);

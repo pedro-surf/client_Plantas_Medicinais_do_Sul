@@ -11,21 +11,26 @@ export const getPlants = () => dispatch => {
   );
 };
 
-export const addPlant = function(item) {
-  return axios
-    .post("/api/plants/register", item)
-    .then(res.json(item))
-    .then(console.log(item, "Plant added to DB..."))
-    .catch(err => console.log(err));
+export const addPlant = item => dispatch => {
+  axios.post("/api/plants/register", item).then(res =>
+    dispatch({
+      type: ADD_ITEM,
+      payload: res.data
+    })
+  );
 };
 
 export const deleteItem = id => dispatch => {
-  axios.delete(`/api/plants/${id}`).then(res =>
-    dispatch({
-      type: DELETE_ITEM,
-      payload: id
-    })
-  );
+  axios
+    .delete(`/api/plants/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_ITEM,
+        payload: res.data
+      })
+    )
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
 };
 
 export const setItemsLoading = () => {

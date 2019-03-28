@@ -1,53 +1,91 @@
 import React, { Component } from "react";
+import { Container, Button } from "reactstrap";
+import { getPlants, deleteItem } from "../actions/itemActions";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-export class PlantItem extends Component {
-  getStyle = () => {
-    return {
-      background: "#f4f4f4",
-      padding: "6rem",
-      border: "1px #ccc dotted",
-      textDecoration: this.props.todo.completed ? "line-through" : "none",
-      maxWidth: "12rem",
-      maxHeight: "20rem"
+class PlantItem extends Component {
+  constructor(props) {
+    super(props);
+    this.handleMouseHover = this.handleMouseHover.bind(this);
+
+    this.bye = this.bye.bind(this);
+    this.state = {
+      isHovering: false
     };
+  }
+
+  onDeleteClick = id => {
+    this.props.deleteItem(id);
+  };
+
+  handleMouseHover() {
+    this.setState({ isHovering: true });
+  }
+
+  bye = event => {
+    let el = event.target;
+    el.className = "plantbox";
+    this.setState({ isHovering: false });
   };
 
   render() {
-    const { id, name, usage } = this.props.plant;
+    const { name, usage } = this.props;
     return (
-      <div style={this.getStyle()}>
-        <div className="container text-center text-white">
-          <input
-            type="checkbox"
-            onChange={this.props.markComplete.bind(this, id)}
-          />{" "}
-          <h5>{name}</h5>
-          <h5>{usage}</h5>
-          <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>
-            x
-          </button>
+      <Container style={this.displayRandomColor}>
+        <div
+          className="plantbox text-green card-title"
+          onMouseOver={this.handleMouseHover}
+          onMouseOut={this.bye}
+          style={{
+            padding: "0.8rem",
+            margin: "0.2rem",
+            border: "1px dotted",
+
+            fontSize: "1.2rem"
+          }}
+        >
+          {name}
+
+          {this.state.isHovering && (
+            <div
+              className="card-text"
+              style={{
+                position: "absolute",
+                top: "3.8rem",
+                fontSize: "1.2rem",
+                color: "darkolivegreen",
+                border: "0.1rem",
+                backgroundColor: "white",
+                opacity: "0.9"
+              }}
+            >
+              <p>Usos:</p>{" "}
+              <ul>
+                {usage
+                  .split(", ")
+
+                  .map(item => (
+                    <li style={{ float: "right" }}>{item}</li>
+                  ))}
+              </ul>
+            </div>
+          )}
         </div>
-      </div>
+      </Container>
     );
   }
 }
 
-// PropTypes
 PlantItem.propTypes = {
-  plant: PropTypes.object.isRequired,
-  markComplete: PropTypes.func.isRequired,
-  delTodo: PropTypes.func.isRequired
+  item: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  key: PropTypes.string.isRequired,
+  usage: PropTypes.string.isRequired
 };
 
-const btnStyle = {
-  background: "#ff0000",
-  color: "#fff",
-  border: "none",
-  padding: "5px 9px",
-  borderRadius: "50%",
-  cursor: "pointer",
-  float: "right"
-};
+const mapStateToProps = state => ({
+  item: state.item
+});
 
-export default PlantItem;
+export default connect(mapStateToProps)(PlantItem);

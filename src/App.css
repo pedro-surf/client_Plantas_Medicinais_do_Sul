@@ -8,19 +8,28 @@ img {
   min-height: 95vh;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .landing-inner {
-  padding-top: 80px;
+  padding-top: 4rem;
+  position: absolute;
 }
 
 .lighter {
   color: white;
 }
+.plantbox {
+  color: darkolivegreen;
+  text-align: center;
+  opacity: 0.8;
+  position: relative;
+  text-transform: capitalize;
+  font-family: "Times New Roman", Times, serif;
+}
 
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.4);
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
