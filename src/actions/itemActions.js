@@ -26,7 +26,7 @@ export const deleteItem = id => dispatch => {
     .then(res =>
       dispatch({
         type: DELETE_ITEM,
-        payload: res.data
+        payload: id
       })
     )
     .then(data => console.log(data))

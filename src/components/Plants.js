@@ -31,10 +31,22 @@ class Plants extends Component {
             </div>
           ) : name.toUpperCase().charAt(0) == "E" ? (
             <div className="d-inline-block card text-green">
-              <PlantItem name={name} key={_id} usage={usage} />
+              <PlantItem
+                name={name}
+                key={_id}
+                usage={usage}
+                onDeleteClick={this.onDeleteClick.bind(this, _id)}
+              />
             </div>
           ) : (
-            "NOt A nor E"
+            <div className="d-inline-block card text-green">
+              <PlantItem
+                name={name}
+                key={_id}
+                usage={usage}
+                onDeleteClick={this.onDeleteClick.bind(this, _id)}
+              />
+            </div>
           )
         )}
       </Container>

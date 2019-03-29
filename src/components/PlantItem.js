@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Container, Button } from "reactstrap";
-import { getPlants, deleteItem } from "../actions/itemActions";
+import { Container, Button, Col, Row } from "reactstrap";
+import { deleteItem } from "../actions/itemActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -15,10 +15,6 @@ class PlantItem extends Component {
     };
   }
 
-  onDeleteClick = id => {
-    this.props.deleteItem(id);
-  };
-
   handleMouseHover() {
     this.setState({ isHovering: true });
   }
@@ -30,34 +26,40 @@ class PlantItem extends Component {
   };
 
   render() {
-    const { name, usage } = this.props;
+    const { name, usage, key } = this.props;
+    var stylePlantsBox = () => {
+      let randomNumber = Math.floor(Math.random() * 5);
+      var classes = ["green", "purple", "teal", "violet", "pink"];
+      return {color: classes[randomNumber]} ;
+    };
+
     return (
-      <Container style={this.displayRandomColor}>
+      <Container>
         <div
           className="plantbox text-green card-title"
           onMouseOver={this.handleMouseHover}
           onMouseOut={this.bye}
-          style={{
-            padding: "0.8rem",
-            margin: "0.2rem",
-            border: "1px dotted",
-
-            fontSize: "1.2rem"
-          }}
+          style={
+            {
+             
+              fontSize: "1.2rem"
+            }
+          }
         >
           {name}
+          {key}
 
           {this.state.isHovering && (
             <div
-              className="card-text"
+              className="card card-body"
               style={{
                 position: "absolute",
                 top: "3.8rem",
+                paddingTop: "0.1rem",
                 fontSize: "1.2rem",
                 color: "darkolivegreen",
-                border: "0.1rem",
                 backgroundColor: "white",
-                opacity: "0.9"
+                opacity: "1"
               }}
             >
               <p>Usos:</p>{" "}
@@ -72,6 +74,19 @@ class PlantItem extends Component {
             </div>
           )}
         </div>
+        <Row>
+          <Col className="text-center">
+            {" "}
+            <Button
+              outline
+              color="success"
+              onClick={this.props.onDeleteClick}
+              size="sm"
+            >
+              Apagar do Mongo
+            </Button>
+          </Col>
+        </Row>
       </Container>
     );
   }
@@ -88,4 +103,7 @@ const mapStateToProps = state => ({
   item: state.item
 });
 
-export default connect(mapStateToProps)(PlantItem);
+export default connect(
+  mapStateToProps,
+  { deleteItem }
+)(PlantItem);

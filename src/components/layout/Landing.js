@@ -10,17 +10,11 @@ export default class Landing extends Component {
   };
 
   render() {
-    const stylePlantsBox = () => {
-      let randomNumber = Math.floor(Math.random() * 5);
-      var classes = new Array("green", "purple", "teal", "violet", "pink");
-      return classes[randomNumber];
-    };
-
     return (
       <div className="landing">
         <div className="dark-overlay landing-inner text-white text-center">
-          Produzido baseado em open source. Código disponível no GitHub em
-          breve. (@pedro-surf)
+          App produzido com a MERN stack e baseado em estudos feitos na comunidade open source. <a className="text-white font-weight-bold" href="http://www.github.com/pedro-surf" target="_blank">Código disponível no meu GitHub (@pedro-surf)</a>. -- <a className="text-white"  href="http://www.linkedin.com/in/pedro-surf" target="_blank">Meu LinkedIn</a>
+          <Clock />
           <p className=" card-form display-3 mb-4">
             O universo das plantas à sua volta.
           </p>
@@ -28,7 +22,7 @@ export default class Landing extends Component {
             Informações sobre o uso e identificação de espécies medicinais
             comuns.
           </h5>{" "}
-          <Clock />
+          
           <AddPlant addPlant={addPlant} />
           <Plants plants={this.state.plants} />
         </div>

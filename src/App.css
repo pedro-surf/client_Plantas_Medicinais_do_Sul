@@ -5,14 +5,14 @@ img {
 .landing {
   background: url("./img/bg.jpg") no-repeat;
   background-position: center;
-  min-height: 95vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   cursor: pointer;
 }
 
 .landing-inner {
-  padding-top: 4rem;
+  padding-top: 0.5rem;
   position: absolute;
 }
 
@@ -23,6 +23,7 @@ img {
   color: darkolivegreen;
   text-align: center;
   opacity: 0.8;
+  font-size: 0.7rem;
   position: relative;
   text-transform: capitalize;
   font-family: "Times New Roman", Times, serif;
