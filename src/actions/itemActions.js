@@ -1,5 +1,11 @@
 import axios from "axios";
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from "./types";
+import {
+  GET_ITEMS,
+  ADD_ITEM,
+  DELETE_ITEM,
+  ITEMS_LOADING,
+  SEARCH_ITEMS
+} from "./types";
 
 export const getPlants = () => dispatch => {
   dispatch(setItemsLoading());
@@ -18,6 +24,12 @@ export const addPlant = item => dispatch => {
       payload: res.data
     })
   );
+};
+export const searchItem = usage => dispatch => {
+  dispatch({
+    type: SEARCH_ITEMS,
+    payload: usage
+  });
 };
 
 export const deleteItem = id => dispatch => {

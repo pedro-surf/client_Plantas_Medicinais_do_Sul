@@ -11,6 +11,8 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { addPlant } from "../actions/itemActions";
+import CheckBox from "./CheckBox";
+import checkboxes from "../objects/usagecheckboxes";
 
 class AddPlant extends Component {
   state = {
@@ -36,14 +38,24 @@ class AddPlant extends Component {
     this.props.addPlant(newPlant);
     // Close modal
     this.toggle();
+    // Clear State
     this.setState({ name: "", usage: "" });
   };
-
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  onNameChange = e => this.setState({ name: e.target.value });
+  onUsageChange = e => {
+    this.setState({
+      usage: this.state.usage.concat(",", e.target.value)
+    });
+  };
+  onCheck = item => {
+    this.setState(prevState => ({
+      usage: prevState.usage.concat(item.label, ",")
+    }));
+  };
 
   render() {
     return (
-      <div>
+      <div style={{ fontSize: "0.5rem" }}>
         <Button
           color="dark"
           style={{ marginBottom: "2rem" }}
@@ -64,13 +76,38 @@ class AddPlant extends Component {
                   name="name"
                   id="item"
                   placeholder="Nome da planta"
-                  onChange={this.onChange}
+                  onChange={this.onNameChange}
                 />
+                <p
+                  style={{
+                    display: "block",
+                    fontSize: "0.75rem",
+                    paddingTop: "0.8rem"
+                  }}
+                >
+                  Adicione ao menos um uso dentre as opções:
+                </p>
+                {checkboxes.map(item => (
+                  <div className="d-inline-block w-50 p">
+                    <CheckBox
+                      name={item.name}
+                      onChange={this.onCheck.bind(this, item)}
+                      checked={this.state.usage.includes(item.label)}
+                    />
+                    <label key={item.key}>{item.label}</label>
+                  </div>
+                ))}
+
+                <p>
+                  <label for="usage">Outros usos:</label>
+                </p>
                 <Input
+                  style={{ marginBottom: "0.8rem" }}
                   type="text"
                   name="usage"
+                  id="usage"
                   placeholder="Add usos, separados por virgula e espaço (ex: sono, febre)"
-                  onChange={this.onChange}
+                  onChange={this.onUsageChange}
                 />
                 <Button className="btn btn-success" block>
                   Adicionar Planta

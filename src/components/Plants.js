@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Button } from "reactstrap";
+import { Container } from "reactstrap";
 import { getPlants, deleteItem } from "../actions/itemActions";
 import { connect } from "react-redux";
 import PlantItem from "./PlantItem";
@@ -22,33 +22,19 @@ class Plants extends Component {
 
   render() {
     const { items } = this.props.item;
+
     return (
       <Container>
-        {items.map(({ _id, name, usage }) =>
-          name.toUpperCase().charAt(0) == "A" ? (
-            <div className="d-inline-block card text-green">
-              <PlantItem name={name} key={_id} usage={usage} />
-            </div>
-          ) : name.toUpperCase().charAt(0) == "E" ? (
-            <div className="d-inline-block card text-green">
-              <PlantItem
-                name={name}
-                key={_id}
-                usage={usage}
-                onDeleteClick={this.onDeleteClick.bind(this, _id)}
-              />
-            </div>
-          ) : (
-            <div className="d-inline-block card text-green">
-              <PlantItem
-                name={name}
-                key={_id}
-                usage={usage}
-                onDeleteClick={this.onDeleteClick.bind(this, _id)}
-              />
-            </div>
-          )
-        )}
+        {items.map(({ _id, name, usage }) => (
+          <div className="d-inline-block card text-green">
+            <PlantItem
+              name={name}
+              key={_id}
+              usage={usage}
+              onDeleteClick={this.onDeleteClick.bind(this, _id)}
+            />
+          </div>
+        ))}
       </Container>
     );
   }

@@ -8,7 +8,7 @@ class PlantItem extends Component {
   constructor(props) {
     super(props);
     this.handleMouseHover = this.handleMouseHover.bind(this);
-
+    this.stylePlantsBox = this.stylePlantsBox.bind(this);
     this.bye = this.bye.bind(this);
     this.state = {
       isHovering: false
@@ -19,19 +19,17 @@ class PlantItem extends Component {
     this.setState({ isHovering: true });
   }
 
-  bye = event => {
-    let el = event.target;
-    el.className = "plantbox";
+  bye = () => {
     this.setState({ isHovering: false });
+  };
+  stylePlantsBox = () => {
+    let randomNumber = Math.floor(Math.random() * 5);
+    var classes = ["green", "purple", "teal", "violet", "pink"];
+    return classes[randomNumber];
   };
 
   render() {
     const { name, usage, key } = this.props;
-    var stylePlantsBox = () => {
-      let randomNumber = Math.floor(Math.random() * 5);
-      var classes = ["green", "purple", "teal", "violet", "pink"];
-      return {color: classes[randomNumber]} ;
-    };
 
     return (
       <Container>
@@ -39,14 +37,9 @@ class PlantItem extends Component {
           className="plantbox text-green card-title"
           onMouseOver={this.handleMouseHover}
           onMouseOut={this.bye}
-          style={
-            {
-             
-              fontSize: "1.2rem"
-            }
-          }
+          style={{ fontSize: "1.2rem" }}
         >
-          {name}
+          <div>{name}</div>
           {key}
 
           {this.state.isHovering && (
@@ -54,21 +47,24 @@ class PlantItem extends Component {
               className="card card-body"
               style={{
                 position: "absolute",
-                top: "3.8rem",
+                top: "5rem",
+                right: "0.1rem",
+                marginTop: "0.3rem",
+                display: "fit",
                 paddingTop: "0.1rem",
-                fontSize: "1.2rem",
+                fontSize: "0.7rem",
                 color: "darkolivegreen",
                 backgroundColor: "white",
                 opacity: "1"
               }}
             >
-              <p>Usos:</p>{" "}
+              <p>Usos médicos:</p>{" "}
               <ul>
                 {usage
-                  .split(", ")
+                  .split(",")
 
                   .map(item => (
-                    <li style={{ float: "right" }}>{item}</li>
+                    <li>{item}</li>
                   ))}
               </ul>
             </div>
@@ -83,7 +79,7 @@ class PlantItem extends Component {
               onClick={this.props.onDeleteClick}
               size="sm"
             >
-              Apagar do Mongo
+              Apagar do MongoDB
             </Button>
           </Col>
         </Row>
@@ -96,7 +92,8 @@ PlantItem.propTypes = {
   item: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   key: PropTypes.string.isRequired,
-  usage: PropTypes.string.isRequired
+  usage: PropTypes.string.isRequired,
+  onDeleteClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

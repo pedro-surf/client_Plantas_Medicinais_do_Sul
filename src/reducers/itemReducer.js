@@ -2,8 +2,10 @@ import {
   GET_ITEMS,
   ADD_ITEM,
   DELETE_ITEM,
-  ITEMS_LOADING
+  ITEMS_LOADING,
+  SEARCH_ITEMS
 } from "../actions/types";
+import SearchPlant from "../components/SearchPlant";
 
 const initialState = {
   items: [],
@@ -18,6 +20,12 @@ export default function(state = initialState, action) {
         items: action.payload,
         loading: false
       };
+    case SEARCH_ITEMS:
+      return {
+        ...state,
+        items: state.items.filter(item => item.usage.contains(action.payload))
+      };
+
     case DELETE_ITEM:
       return {
         ...state,
