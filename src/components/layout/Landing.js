@@ -42,7 +42,7 @@ export default class Landing extends Component {
           </h5>{" "}
           <div className="row">
             {" "}
-            <SearchPlant plants={this.state.plants} />
+            <SearchPlant allPlants={this.state.plants} />
             <AddPlant addPlant={addPlant} />
           </div>
           <Plants plants={this.state.plants} />

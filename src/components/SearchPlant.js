@@ -2,33 +2,45 @@ import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, Form, Input } from "reactstrap";
 import checkboxes from "../objects/usagecheckboxes";
 import SelectListGroup from "./SelectListGroup";
-import searchItem from "../actions/itemActions";
+
 
 class SearchPlant extends Component {
-  state = {
-    selectedusage: "",
-    showingresults: false
+constructor(props) {
+super(props);
+this.state = {
+    plants: props.allPlants,
+    showingresults: false,
+    queryname: ""
+  };
+  this.searchPlant = this.searchPlant.bind(this);
+  this.handleChange = this.handleChange.bind(this);
+  this.toggle = this.toggle.bind(this);
+}
+
+searchPlant(plant) {
+    	const { queryname } = this.state;
+	this.setState({ plants: [...this.state.plants.filter(item => {
+		let query = new RegExp(queryname, 'gi' );
+		if (item.name.match(query)) {
+		return item.name.match(query)
+	} else { return null } })] })
+}
+
+handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
-  searchPlant = state => {
-    return searchItem(this.state.selectedusage);
-  };
-
-  handleSelectChange = event => {
-    this.setState({ selectedusage: event.target.label });
-  };
-
-  toggle = () => {
+ toggle() {
     this.setState({
       modal: !this.state.modal
     });
-  };
+  }
 
-  onSubmit = e => {
+onSubmit(e) {
+e.preventDefault();
     // Find requested usage
     this.searchPlant();
     // Close modal
-
     //
     this.setState({ showingresults: true });
   };
@@ -39,14 +51,12 @@ class SearchPlant extends Component {
     const options = checkboxes;
 
     return (
-      <div className="r-50 col-4 text-center" style={{ fontSize: "0.5rem" }}>
-        Procurar plantas de acordo com uso desejado
-        <SelectListGroup
-          onChange={this.handleSelectChange}
+      <div className="text-center" >
+              <Input
+          onChange={this.handleChange}
+          name="queryname"
           className="btn btn-dark"
-          placeholder="Selecione o Uso:"
-          options={options}
-          style={{ maxHeight: "40%", maxWidth: "40%" }}
+          placeholder="Procure uma espécie..."
         />
         {this.state.showingresults && <div>{}</div>}
       </div>
