@@ -27,8 +27,7 @@ export const addPlant = item => dispatch => {
 };
 export const searchItem = usage => dispatch => {
   dispatch({
-    type: SEARCH_ITEMS,
-    payload: usage
+    type: SEARCH_ITEMS
   });
 };
 
