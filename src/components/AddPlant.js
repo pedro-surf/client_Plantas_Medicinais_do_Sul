@@ -36,11 +36,10 @@ class AddPlant extends Component {
 
     // Add item via addItem action
     this.props.addPlant(newPlant);
-    // Close modal
-    this.toggle();
-    // Clear State
-    this.setState({ name: "", usage: "" });
+    this.toggle();   // Close modal
+    this.setState({ name: "", usage: "" });  // Clear State
   };
+
   onNameChange = e => this.setState({ name: e.target.value });
   onUsageChange = e => {
     this.setState({

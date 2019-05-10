@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { Button, Modal, ModalHeader, ModalBody, Form, Input } from "reactstrap";
-import checkboxes from "../objects/usagecheckboxes";
-import SelectListGroup from "./SelectListGroup";
-
+import { Button, Input } from "reactstrap";
 
 class SearchPlant extends Component {
 constructor(props) {
 super(props);
-this.state = {
+this.state = { // Initial State
     plants: props.allPlants,
-    showingresults: false,
-    queryname: ""
+    received_query: false,
+    queryname: "", // Search for plants with name related to this string's regex
+    modal: false
   };
   this.searchPlant = this.searchPlant.bind(this);
   this.handleChange = this.handleChange.bind(this);
@@ -27,8 +25,8 @@ searchPlant(plant) {
 }
 
 handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    this.setState({ [event.target.name]: event.target.value, received_query: !this.state.received_query });
+  }
 
  toggle() {
     this.setState({
@@ -36,30 +34,23 @@ handleChange(event) {
     });
   }
 
-onSubmit(e) {
-e.preventDefault();
-    // Find requested usage
-    this.searchPlant();
-    // Close modal
-    //
-    this.setState({ showingresults: true });
-  };
 
   render() {
-    const { items } = this.props.plants;
-    // Select options for status
-    const options = checkboxes;
+    const plants = this.props.allPlants;
 
     return (
-      <div className="text-center" >
-              <Input
-          onChange={this.handleChange}
-          name="queryname"
-          className="btn btn-dark"
-          placeholder="Procure uma espécie..."
-        />
-        {this.state.showingresults && <div>{}</div>}
-      </div>
+<div>
+      <Button onClick={this.toggle}>Buscar Plantas </Button>
+ 	<div>
+	{this.state.modal &&
+        <div>
+        <Input onChange={this.handleChange} name="queryname" className="dark" placeholder="Procure uma espécie..." />
+        </div>}
+             
+{this.state.received_query && (<div><ul>{plants.map(item => (<li>{item.name}</li>))}</ul></div>)
+	}
+	</div>
+</div>
     );
   }
 }

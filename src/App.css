@@ -1,15 +1,24 @@
+.app {
+  cursor: pointer;
+  align-items: center;
+  align-self: center;
+}
 img {
   width: 100%;
 }
 
 .landing {
+  background: url("./img/firstbg.jpg") no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.plants-landing {
   background: url("./img/bg.jpg") no-repeat;
   background-position: center;
   min-height: 100vh;
   padding-top: 0.3rem;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
 }
 
 .lighter {

@@ -4,15 +4,16 @@ import Plants from "../Plants.js";
 import { addPlant } from "../../actions/itemActions";
 import Clock from "./Clock";
 import SearchPlant from "../SearchPlant";
+import "../../App.css";
 
-export default class Landing extends Component {
+export default class PlantsLanding extends Component {
   state = {
     plants: []
   };
 
   render() {
     return (
-      <div className="landing">
+      <div className="plants-landing">
         <div className="dark-overlay text-white text-center">
           App produzido com a MERN stack e baseado em estudos feitos na
           comunidade open source.{" "}
@@ -40,7 +41,7 @@ export default class Landing extends Component {
           <h5 className="text-center" style={{ padding: "0px" }}>
             Informações sobre o uso de espécies medicinais comuns.
           </h5>{" "}
-          <div className="row">
+          <div className="row d-flex justify-content-center">
             {" "}
             <SearchPlant allPlants={this.state.plants} />
             <AddPlant addPlant={addPlant} />
