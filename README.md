@@ -1,8 +1,8 @@
 Screenshots:
 
-![ss_landing](/home/pedro-surf/my_development/My_Apps/My_Portfolio/client/ss_landing.png)
+![ss_landing](./ss_landing.png)
 
-![ss_plants](/home/pedro-surf/my_development/My_Apps/My_Portfolio/client/ss_plants.png)
+![ss_plants](./ss_plants.png)
 
 # client_Plantas_Medicinais_do_Sul
 
