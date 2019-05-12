@@ -8,7 +8,7 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark d-flex justify-content-center">
+      <nav className="navbar navbar-expand-sm navbar-dark mb-0 bg-dark d-flex justify-content-center">
         <div className="d-flex justify-content-center">
           <Link className="navbar-brand" to="/">
             Home
@@ -25,7 +25,7 @@ export default class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/plants">
+                <Link className="nav-link" to="/about">
                   {" "}
                   About
                 </Link>
@@ -54,6 +54,7 @@ export default class Navbar extends Component {
             </ul>
           </div>
         </div>
+        <Clock />
       </nav>
     );
   }

@@ -6,7 +6,6 @@ import {
   ModalBody,
   Form,
   FormGroup,
-  Label,
   Input
 } from "reactstrap";
 import { connect } from "react-redux";
@@ -36,8 +35,8 @@ class AddPlant extends Component {
 
     // Add item via addItem action
     this.props.addPlant(newPlant);
-    this.toggle();   // Close modal
-    this.setState({ name: "", usage: "" });  // Clear State
+    this.toggle(); // Close modal
+    this.setState({ name: "", usage: "" }); // Clear State
   };
 
   onNameChange = e => this.setState({ name: e.target.value });

@@ -21,7 +21,9 @@ const ComponentCard = props => (
         <p className="card-text">{props.desc}</p>
       </div>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item">Tools used:</li>
+        <li className="list-group-item" style={{ fontSize: "0.7rem" }}>
+          Tools used:
+        </li>
         <li className="list-group-item" style={{ border: "1px solid black" }}>
           {props.resources}
         </li>

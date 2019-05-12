@@ -1,0 +1,39 @@
+.food-app {
+  background: url("../../img/natural_food.jpg") no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.darker-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.prog-learning {
+  background: url("../../img/coding.jpg") no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.small-info {
+  font-size: 0.7rem;
+  text-align: left;
+  padding: 0.2rem;
+}
+
+.forest {
+  background: url("../../img/motherforest.jpg") no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
