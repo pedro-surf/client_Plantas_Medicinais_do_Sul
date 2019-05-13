@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Row, Col, Alert } from "reactstrap";
+import { Row, Col, Button } from "reactstrap";
+import ReactToolTip from "react-tooltip";
 import "./Landings.css";
 const substances = {
   MDMA: "Wachuma Cactus",
@@ -47,32 +48,36 @@ class PsychLanding extends Component {
             <div className="dark-overlay">
               <div>
                 <Row>
-                  <Col>Drogas perigosas de origem duvidosa:</Col>
                   <Col>
-                    Alternativa natural análoga:: (PESQUISE ANTES DE MAIS NADA!)
+                    Drogas perigosas de origem duvidosa (PESQUISE ! veja
+                    análogos naturais))
                   </Col>
                 </Row>
               </div>
-              {Object.keys(substances).map(key => {
-                return (
-                  <Row>
-                    <Col>
-                      <Alert
-                        color="warning"
-                        name={key}
-                        style={{ height: "2.3rem" }}
-                      >
-                        {key}
-                      </Alert>
-                    </Col>
-                    <Col>
-                      {this.state.hovering && (
-                        <Alert color="success">{substances[key]}</Alert>
-                      )}
-                    </Col>
-                  </Row>
-                );
-              })}
+              <Row className="d-flex justify-content-center">
+                {Object.keys(substances).map(key => {
+                  return (
+                    <div>
+                      <Col>
+                        <Button
+                          color="warning"
+                          name={key}
+                          style={{ height: "2.3rem" }}
+                          data-tip={substances[key]}
+                          className="m-2"
+                        >
+                          {key}
+                        </Button>
+                      </Col>
+                      <ReactToolTip
+                        className="btn bg-success d-flex justify-content-end"
+                        place="bottom"
+                        multiline="true"
+                      />
+                    </div>
+                  );
+                })}
+              </Row>
             </div>
           </div>
         </Col>

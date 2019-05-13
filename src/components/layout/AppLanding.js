@@ -6,19 +6,20 @@ import plantsImg from "./images/plants.jpeg";
 import psychImg from "./images/psychedelics.jpeg";
 import foodsImg from "./images/foods.jpeg";
 import progImg from "./images/prog.jpg";
+import recipesImg from "./images/recipes.jpg";
 
 export default class PlantsLanding extends Component {
   state = {};
 
   render() {
     return (
-      <div className="landing">
+      <div className="landing text-center">
         <Col>
-          <h5 className="text-center pt-3">
-            This is an app for portfolio purposes app made with MERN stack and
-            based on studies made within open-source community.
-          </h5>
-
+          <h5 className="pt-3">This is an app for portfolio purposes.</h5>
+          <h6>
+            made with MERN stack and based on studies made within open-source
+            community.
+          </h6>
           <Row className="d-flex justify-content-center">
             <ComponentCard
               title="Plants"
@@ -40,6 +41,13 @@ export default class PlantsLanding extends Component {
               route="/learn"
               resources={"OOP, React.js, platforms shown"}
               img={progImg}
+            />
+            <ComponentCard
+              title="Cool Recipes"
+              desc="Cooking delicious recipes"
+              route="/recipes"
+              resources={"Redux [Thunk], Basic Reactive behavior"}
+              img={recipesImg}
             />
             <ComponentCard
               title="Natural Magic"

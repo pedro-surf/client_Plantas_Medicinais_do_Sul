@@ -28,6 +28,17 @@
   padding: 0.2rem;
 }
 
+.about {
+  background: url("../../img/about-bg.jpeg") no-repeat;
+  background-position: top;
+
+  min-height: 100vh;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+}
+
 .forest {
   background: url("../../img/motherforest.jpg") no-repeat;
   background-position: center;
@@ -36,4 +47,11 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+.recipes {
+  background: url("./images/recipes-bg.jpg") no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  text-align: center;
+  justify-content: center;
 }

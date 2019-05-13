@@ -4,6 +4,7 @@ import PlantsLanding from "./components/layout/PlantsLanding";
 import FoodLanding from "./components/layout/FoodLanding";
 import PsychLanding from "./components/layout/PsychLanding";
 import ProgLearnLanding from "./components/layout/ProgLearnLanding";
+import RecipesLanding from "./components/layout/RecipesLanding";
 import AppLanding from "./components/layout/AppLanding";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/learn" component={ProgLearnLanding} />
             <Route exact path="/psychedelics" component={PsychLanding} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/recipes" component={RecipesLanding} />
           </div>
           <Footer />
         </Router>
